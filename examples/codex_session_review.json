@@ -1,0 +1,33 @@
+{
+  "provenance": "Prepared in the interactive Codex development session, 2026-10-17. These notes are not Unity Gateway output or an assertion of human approval.",
+  "architecture": {
+    "proposal": "Use a bounded complete-feed Delta snapshot and triggered serverless SDP materialized views for Bronze, quarantine, Silver and Gold customer history.",
+    "assumptions": [
+      "Full UPSERT images and all historical events are available on every refresh.",
+      "A positive customer sequence uniquely orders strictly increasing UTC event timestamps.",
+      "Reject ambiguous event identity, sequence and timestamp conflicts before replacing input data.",
+      "Quarantined rows may leave incomplete history and require review."
+    ],
+    "questions": [
+      "Is complete-feed batch recomputation sufficient for the course MVP?",
+      "Should invalid events block publication in a later version?"
+    ]
+  },
+  "implementation": {
+    "decision": "Generate the supported pattern from versioned templates and share Spark transformation functions with the workspace verifier.",
+    "details": [
+      "Deduplicate validated event IDs in Silver.",
+      "Filter unchanged UPSERTs before computing history intervals.",
+      "Compute lead timestamps before filtering DELETE events so deleted rows close correctly.",
+      "A reinsert after DELETE starts a new version even if attributes match a previous version."
+    ]
+  },
+  "unit_testing": {
+    "decision": "Use hand-authored independent expected intervals and boundary cases. Execute generated pytest tests separately from recording their generated status.",
+    "cases": ["normalization", "UTC conversion", "sequence bounds", "missing timezone", "conflicting identity", "empty input", "duplicates", "delete and reinsert"]
+  },
+  "integration_review": {
+    "decision": "Verify actual Spark transformations and deployed tables against the independent four-row history fixture, including duplicate replay and reversed arrival.",
+    "limitations": ["No streaming AUTO CDC", "No arbitrary source systems", "No production deployment", "No autonomous repair", "Generated scenarios are not execution evidence"]
+  }
+}

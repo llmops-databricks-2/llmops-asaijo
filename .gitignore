@@ -27,7 +27,10 @@ env/
 .venv
 
 # IDEs
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
 .idea/
 *.swp
 *.swo
@@ -63,3 +66,6 @@ mlartifacts/
 # Temporary files
 *.tmp
 *.bak
+
+# Generated design proposals and model responses stay local until reviewed for submission.
+work/

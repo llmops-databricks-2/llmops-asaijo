@@ -1,0 +1,8 @@
+{
+  "state": "COMPLETED",
+  "pipeline_id": "638024cd-db21-4038-a880-c011d812bdc3",
+  "update_id": "c9c21d85-85d7-46c1-abe0-434cedae937a",
+  "creation_time": 1792242527004,
+  "cause": "JOB_TASK",
+  "full_refresh": false
+}

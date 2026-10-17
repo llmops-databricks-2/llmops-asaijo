@@ -1,0 +1,18 @@
+{
+  "run_id": 825029302924928,
+  "result_state": "SUCCESS",
+  "checks": [
+    "complete_feed",
+    "duplicate_replay",
+    "reversed_arrival",
+    "deployed_table_equality"
+  ],
+  "row_counts_asserted": {
+    "bronze": 9,
+    "quarantine": 2,
+    "silver": 6,
+    "gold_history": 4
+  },
+  "expected_fixture": "src/sdp_framework/assets/expected_history.json",
+  "test_code": "resources/deployment_notebooks/sdp_verify.py"
+}

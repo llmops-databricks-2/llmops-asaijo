@@ -1,0 +1,9 @@
+{"event_id":"e3","customer_id":"C001","sequence":3,"event_time":"2026-01-03T00:00:00Z","operation":"UPSERT","name":"Alice","email":"ALICE.NEW@example.test"}
+{"event_id":"e1","customer_id":" C001 ","sequence":1,"event_time":"2026-01-01T00:00:00Z","operation":"upsert","name":" Alice ","email":"ALICE@example.test"}
+{"event_id":"e2","customer_id":"C001","sequence":2,"event_time":"2026-01-02T00:00:00Z","operation":"UPSERT","name":"Alice","email":"alice@example.test"}
+{"event_id":"e1","customer_id":" C001 ","sequence":1,"event_time":"2026-01-01T00:00:00Z","operation":"upsert","name":" Alice ","email":"ALICE@example.test"}
+{"event_id":"e4","customer_id":"C001","sequence":4,"event_time":"2026-01-04T00:00:00Z","operation":"DELETE"}
+{"event_id":"e5","customer_id":"C001","sequence":5,"event_time":"2026-01-05T00:00:00Z","operation":"UPSERT","name":"Alice","email":"alice.new@example.test"}
+{"event_id":"e6","customer_id":"C002","sequence":1,"event_time":"2026-01-01T00:00:00Z","operation":"UPSERT","name":"Bob","email":"bob@example.test"}
+{"event_id":"bad1","customer_id":"","sequence":1,"event_time":"2026-01-01T00:00:00Z","operation":"UPSERT","name":"Invalid","email":"invalid@example.test"}
+{"event_id":"bad2","customer_id":"C003","sequence":1,"event_time":"bad-date","operation":"UPSERT","name":"Invalid","email":"bad-email"}

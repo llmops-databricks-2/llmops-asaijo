@@ -1,0 +1,45 @@
+"""Generated executable unit tests; execution status belongs in pytest evidence."""
+
+import pytest
+
+from sdp_framework.data import asset_json, normalize_event, prepare_events, reference_history, sample_events
+
+
+def test_customer_history_matches_independent_fixture() -> None:
+    """Exercise update, delete, no-op, duplicates, out-of-order and reinsertion."""
+    assert reference_history(prepare_events(sample_events())) == asset_json("expected_history.json")
+
+
+def test_invalid_customer_is_quarantined() -> None:
+    """Reject a blank business key."""
+    assert "missing_key" in normalize_event({"customer_id": " "})["invalid_reason"]
+
+
+def test_duplicate_replay_is_idempotent() -> None:
+    """Replaying the complete source does not change its history."""
+    raw = sample_events()
+    assert reference_history(prepare_events(raw + raw)) == asset_json("expected_history.json")
+
+
+@pytest.mark.parametrize("patch,reason", [
+    ({"sequence": 0}, "invalid_sequence"),
+    ({"sequence": True}, "invalid_sequence"),
+    ({"sequence": 2**63}, "invalid_sequence"),
+    ({"event_time": "2026-01-01T00:00:00"}, "invalid_timestamp"),
+    ({"operation": "TRUNCATE"}, "invalid_operation"),
+])
+def test_boundary_inputs(patch: dict, reason: str) -> None:
+    """Reject invalid sequence bounds, missing timezones and unsupported operations."""
+    assert reason in normalize_event(sample_events()[1] | patch)["invalid_reason"]
+
+
+def test_conflicting_identity_fails() -> None:
+    """Fail ambiguous input before publishing a history table."""
+    event = sample_events()[1]
+    with pytest.raises(ValueError, match="Conflicting"):
+        prepare_events([event, event | {"email": "conflict@example.test"}])
+
+
+def test_empty_feed() -> None:
+    """An empty complete feed produces no history."""
+    assert reference_history(prepare_events([])) == []

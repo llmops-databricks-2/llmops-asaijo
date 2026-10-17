@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Verify course Databricks connection",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/verify_connection.py",
+      "args": ["--profile", "${input:databricksProfile}"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "databricksProfile",
+      "type": "promptString",
+      "description": "Course workspace Databricks profile",
+      "default": "mvn-llmops-asaijo"
+    }
+  ]
+}

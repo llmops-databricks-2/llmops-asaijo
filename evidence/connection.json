@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "workspace": "https://dbc-88df4c2c-4033.cloud.databricks.com",
+  "profile": "mvn-llmops-asaijo",
+  "python": "3.12.13",
+  "remote_spark_range_count": 3,
+  "notebook_environment": "5",
+  "note": "Remote script ran successfully; VS Code launch configuration invokes the same script."
+}

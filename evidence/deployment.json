@@ -1,0 +1,21 @@
+{
+  "target": "dev",
+  "workspace": "https://dbc-88df4c2c-4033.cloud.databricks.com",
+  "job_id": 159443134299981,
+  "pipeline_id": "638024cd-db21-4038-a880-c011d812bdc3",
+  "budget_policy_id": "ca660602-32c0-3b85-8565-8542c398aa72",
+  "environment_version": "5",
+  "job_parameters": [
+    {
+      "default": "false",
+      "name": "use_gateway"
+    }
+  ],
+  "runtime_source_sha256": {
+    "resources/deployment_notebooks/sdp_prepare.py": "91b4360b2252be70e1e9eb2bb074a0ba22cdf23105bef3d018c8996109d3511d",
+    "resources/deployment_notebooks/sdp_verify.py": "edfa9af04a40dc27746535a70e69569f3e77734bb5a91295e6652099ee51927a",
+    "resources/deployment_notebooks/sdp_experiment.py": "771528ec797dd246833f497a7247d4571464f59a0c4c650ffee4458665783265",
+    "src/sdp_framework/transforms.py": "6ac55cbb0309dde9d6424078b8cd7515bd1ed9da771e075bdb2a2b829db924fe",
+    "src/pipelines/customers/transformations/customer_pipeline.py": "699b55132283db7866422be6e8e2fbdf9c8799a7c94775ed584dba4edca6b0c4"
+  }
+}

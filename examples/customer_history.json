@@ -1,0 +1,28 @@
+{
+  "use_case": "Generate a reviewable customer-history SDP pipeline from mock change events",
+  "users": ["data engineers"],
+  "pattern": "customer_history_batch_v1",
+  "source_schema": {"event_id":"string","customer_id":"string","sequence":"long","event_time":"ISO8601 with timezone","operation":"UPSERT or DELETE","name":"string","email":"string"},
+  "target_columns": ["customer_id","name","email","valid_from","valid_to"],
+  "rules": {
+    "images": "full",
+    "order": "sequence_per_customer",
+    "timestamps": "strictly_increasing_per_customer",
+    "duplicates": "deduplicate_event_id_fail_conflicts",
+    "invalid_data": "quarantine",
+    "unchanged_images": "suppress",
+    "deletes": "close_history",
+    "reinsert": "new_version",
+    "reprocessing": "recompute_complete_feed",
+    "intervals": "half_open_utc"
+  },
+  "assumptions": [
+    "Bounded complete mock feed; all previous events remain available on every refresh.",
+    "UPSERT is a full image; sequence is a positive integer unique per customer.",
+    "Event IDs are global; conflicting identity/sequence or timestamp order fails preparation.",
+    "Late arrival is supported by sorting sequence; a retroactive event requires the complete feed.",
+    "DELETE of an absent customer is a no-op; reinsertion starts a new interval.",
+    "Email normalization is lowercase with a minimal format check, not full RFC validation.",
+    "Only development is deployed. No streaming CDC or autonomous repair in this MVP."
+  ]
+}

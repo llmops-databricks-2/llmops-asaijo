@@ -14,6 +14,14 @@ artifacts:
 include:
   - resources/*.yml
 
+variables:
+  sdp_catalog:
+    default: llmops_dev
+  sdp_schema:
+    default: asaijo
+  usage_policy_id:
+    default: ca660602-32c0-3b85-8565-8542c398aa72
+
 # Three targets in the one course workspace, each writing your schema in its own catalog
 # (project_config.yml). Each is deployed under the home folder of whoever deploys it: you from your
 # laptop. A deployment workflow is introduced in a later lecture. The workspace host is

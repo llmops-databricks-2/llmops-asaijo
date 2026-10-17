@@ -1,0 +1,39 @@
+{
+  "run_id": 371675195974749,
+  "job_id": 159443134299981,
+  "run_page_url": "https://dbc-88df4c2c-4033.cloud.databricks.com/?o=7474648231747660#job/159443134299981/run/371675195974749",
+  "start_time": 1792241958026,
+  "end_time": 1792243526722,
+  "result_state": "SUCCESS",
+  "gateway_notebook_result": {
+    "status": "skipped",
+    "reason": "Gateway calls are opt-in; use Codex for development"
+  },
+  "tasks": [
+    {
+      "task_key": "pipeline",
+      "run_id": 666689904926634,
+      "result_state": "SUCCESS"
+    },
+    {
+      "task_key": "verify",
+      "run_id": 825029302924928,
+      "result_state": "SUCCESS"
+    },
+    {
+      "task_key": "prepare",
+      "run_id": 1014073760351053,
+      "result_state": "SUCCESS"
+    },
+    {
+      "task_key": "model_experiments",
+      "run_id": 304700242232415,
+      "result_state": "CANCELED"
+    },
+    {
+      "task_key": "model_experiments",
+      "run_id": 142084986651769,
+      "result_state": "SUCCESS"
+    }
+  ]
+}

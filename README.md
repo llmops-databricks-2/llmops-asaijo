@@ -1,5 +1,16 @@
 # llmops-asaijo
 
+## SDP code generation course project
+
+The implemented MVP turns mock customer-change requirements into a review-gated medallion design,
+starter SDP code, executable tests and integration scenarios. See
+[the implementation and run guide](docs/course_submission.md) for setup, CLI commands, assumptions,
+development deployment and the distinction between generated artifacts and actual execution evidence.
+Workspace validation/run status is tracked in [evidence/status.json](evidence/status.json).
+No pull request has been created.
+Development uses this interactive Codex session by default. Unity Gateway calls require an explicit
+`--backend gateway` flag; deployed jobs skip them unless `use_gateway=true` is set.
+
 Your repository for the LLMOps course on Databricks. Everything you need in
 the course workspace was provisioned for you before you got this repo, and every id is already in
 `project_config.yml`: you configure nothing.

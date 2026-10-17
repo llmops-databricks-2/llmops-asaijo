@@ -1,0 +1,6 @@
+[
+  {"customer_id":"C001","name":"Alice","email":"alice@example.test","valid_from":"2026-01-01T00:00:00.000000Z","valid_to":"2026-01-03T00:00:00.000000Z"},
+  {"customer_id":"C001","name":"Alice","email":"alice.new@example.test","valid_from":"2026-01-03T00:00:00.000000Z","valid_to":"2026-01-04T00:00:00.000000Z"},
+  {"customer_id":"C001","name":"Alice","email":"alice.new@example.test","valid_from":"2026-01-05T00:00:00.000000Z","valid_to":null},
+  {"customer_id":"C002","name":"Bob","email":"bob@example.test","valid_from":"2026-01-01T00:00:00.000000Z","valid_to":null}
+]

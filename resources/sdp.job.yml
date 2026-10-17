@@ -1,0 +1,51 @@
+targets:
+  dev:
+    resources:
+      jobs:
+        sdp_course_workflow:
+          name: sdp-course-workflow-asaijo-${bundle.target}
+          budget_policy_id: ${var.usage_policy_id}
+          performance_target: STANDARD
+          max_concurrent_runs: 1
+          timeout_seconds: 3600
+          parameters:
+            - name: use_gateway
+              default: "false"
+          tags:
+            aidevkit_project: ai-dev-kit
+            project: sdp-code-generation
+          environments:
+            - environment_key: course
+              spec:
+                environment_version: "5"
+                dependencies:
+                  - ../dist/*.whl
+          tasks:
+            - task_key: prepare
+              environment_key: course
+              notebook_task:
+                notebook_path: deployment_notebooks/sdp_prepare.py
+                base_parameters:
+                  env: ${bundle.target}
+            - task_key: pipeline
+              depends_on:
+                - task_key: prepare
+              pipeline_task:
+                pipeline_id: ${resources.pipelines.sdp_customer_history.id}
+            - task_key: verify
+              depends_on:
+                - task_key: pipeline
+              environment_key: course
+              notebook_task:
+                notebook_path: deployment_notebooks/sdp_verify.py
+                base_parameters:
+                  env: ${bundle.target}
+            - task_key: model_experiments
+              depends_on:
+                - task_key: verify
+              environment_key: course
+              notebook_task:
+                notebook_path: deployment_notebooks/sdp_experiment.py
+                base_parameters:
+                  env: ${bundle.target}
+                  use_gateway: "{{job.parameters.use_gateway}}"

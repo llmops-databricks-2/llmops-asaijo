@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-17",
+  "development_backend": "codex_session",
+  "gateway_default": "disabled",
+  "gateway_calls_executed": 1,
+  "gateway_tokens_observed": {
+    "prompt_tokens": 472,
+    "completion_tokens": 1800,
+    "total_tokens": 2272
+  },
+  "gateway_note": "One architecture experiment ran before the user requested minimal Gateway usage. The pending three-call task was canceled before it started.",
+  "local_tests": {
+    "status": "passed",
+    "tests": 31,
+    "generated_tests_executed": 10,
+    "report": "local-tests.xml"
+  },
+  "ruff": "passed",
+  "bundle_schema_validation": "passed",
+  "workspace_bundle_validation": "passed",
+  "dev_deployment": "passed",
+  "remote_spark_connection": "passed",
+  "data_preparation": "passed",
+  "pipeline_update": "passed",
+  "workspace_verification": "passed",
+  "job_run_id": 371675195974749,
+  "pull_request": "not_created",
+  "gateway_disabled_task": "passed_skipped_without_inference",
+  "gateway_disabled_repair_id": 654359228499044,
+  "pre_commit": "passed",
+  "job_result": "SUCCESS",
+  "run_evidence": "run-final.json"
+}

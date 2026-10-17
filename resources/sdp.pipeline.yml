@@ -1,0 +1,18 @@
+targets:
+  dev:
+    resources:
+      pipelines:
+        sdp_customer_history:
+          name: sdp-customer-history-asaijo-${bundle.target}
+          catalog: ${var.sdp_catalog}
+          schema: ${var.sdp_schema}
+          serverless: true
+          continuous: false
+          channel: CURRENT
+          budget_policy_id: ${var.usage_policy_id}
+          root_path: ../src
+          libraries:
+            - glob:
+                include: ../src/pipelines/customers/transformations/**
+          configuration:
+            sdp.source_table: ${var.sdp_catalog}.${var.sdp_schema}.sdp_prepared_events

@@ -4,6 +4,8 @@ dynamic = ["version"]
 description = "Arxiv Curator - Shared utilities for LLMOps Course on Databricks"
 requires-python = "==3.12.*"
 dependencies = [
+    "PyYAML==6.0.2",
+    "httpx==0.28.1",
     "cffi==1.17.1",
     "cloudpickle==3.0.0",
     "numpy==2.1.3",
@@ -26,10 +28,15 @@ dependencies = [
     "psycopg[binary]==3.3.2"
 ]
 
+[project.scripts]
+sdp-framework = "sdp_framework.cli:main"
+
 [project.optional-dependencies]
 dev = ["pre-commit>=4.1.0, <5"]
 
 ci = ["pre-commit>=4.1.0, <5",
+      "jsonschema==4.26.0",
+      "regex==2026.9.29",
       "pytest>=8.3.4, <9"]
 
 [build-system]
@@ -38,7 +45,10 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where =["src"]
-include = ["arxiv_curator*"]
+include = ["arxiv_curator*", "sdp_framework*"]
+
+[tool.setuptools.package-data]
+sdp_framework = ["assets/*.json", "assets/*.jsonl", "templates/*.txt"]
 
 [tool.setuptools.dynamic]
 version = { file = "version.txt" }
@@ -82,4 +92,4 @@ dev = [
 ]
 
 [tool.databricks.environment]
-environment_version = "6"
+environment_version = "5"
